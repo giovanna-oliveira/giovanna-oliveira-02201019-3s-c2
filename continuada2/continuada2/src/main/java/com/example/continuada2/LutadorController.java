@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/lutadores")
@@ -24,30 +25,24 @@ public class LutadorController {
     }
 
     @GetMapping
-    public List<Lutador> getLutador(){
+    public Optional<Lutador> getLutador(){
         return repository.findAllByOrderByForcaLutaDesc();
     }
 
     @GetMapping("/contagem-vivos")
-    public List<Lutador> getLutadoresVivos(){
+    public Optional<Lutador> getLutadoresVivos(){
         return repository.findByVidaGreaterThan(0.0);
     }
 
     @GetMapping("/mortos")
-    public List<Lutador> getMortos(){
+    public Optional<Lutador> getMortos(){
         return repository.findByVidaLessThan(0.0);
     }
 
-    @PostMapping("/{id}/concentrar")
-    public ResponseEntity postConcentrar(@PathVariable int id){
-        if(repository.findByIdAndConcentracoesRealizadasGreaterThan(id))
-    }
-
-
-    @PostMapping("/golpe {dados}")
-    public List<Lutador> postGolpe(@RequestBody){
-
-        return ResponseEntity.status(201).build();
-    }
+//    @PostMapping("/{id}/concentrar")
+//    public ResponseEntity postConcentrar(@PathVariable int id){
+//        if(repository.findByIdAndConcentracoesRealizadasGreaterThan(id))
+//    }
+   
 
 }

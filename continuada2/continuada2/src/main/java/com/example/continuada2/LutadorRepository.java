@@ -3,11 +3,12 @@ package com.example.continuada2;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface LutadorRepository extends JpaRepository<Lutador, Integer> {
-    public List<Lutador> findAllByOrderByForcaLutaDesc();
+    public Optional<Lutador> findAllByOrderByForcaLutaDesc();
 
-    public List<Lutador> findByVidaGreaterThan(Double vida);
+    public Optional<Lutador> findByVidaGreaterThan(Double vida);
 
-    public List<Lutador> findByVidaLessThan(Double vida);
+    public Optional<Lutador> findByVidaLessThan(Double vida);
 }
